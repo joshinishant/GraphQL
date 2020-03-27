@@ -62,12 +62,12 @@ public class BookServiceImplementation implements BookService {
 
     public List<Book> loadStaticData(){
         List<Book> bookList= new ArrayList<>();
-        bookList.add(new Book("1","Book1","P1",new String[]{"A1","A2"},"18-07-2018"));
-        bookList.add(new Book("2","Book2","P2",new String[]{"A1","A3"},"18-07-2018"));
-        bookList.add(new Book("3","Book3","P3",new String[]{"A4"},"18-07-2018"));
-        bookList.add(new Book("4","Book4","P1",new String[]{"A5"},"18-07-2018"));
-        bookList.add(new Book("5","Book5","P1",new String[]{"A2"},"18-07-2018"));
-        bookList.add(new Book("6","Book6","P2",new String[]{"A2","A5"},"18-07-2018"));
+        bookList.add(new Book("978-0134685991","Effective Java",null,new String[]{"Joshua Bloch"},null));
+        bookList.add(new Book("978-0071808552","Java: The Complete Reference",null,new String[]{"Herbert Schildt"},null));
+        bookList.add(new Book("978-0596009205","Head First Java","O'Reilly",new String[]{"Kathy Sierra","Bert Bates"},null));
+        bookList.add(new Book("978-0596007126","Head First Design Patterns","O'Reilly",new String[]{"Kathy Sierra","Bert Bates","Elisabeth Robson","Eric Freeman"},null));
+        bookList.add(new Book("978-0596008673","Head First Object-Oriented Analysis and Design","O'Reilly",new String[]{"Brett McLaughlin","David West","Gary Pollice"},null));
+        bookList.add(new Book("978-1449340377","Python Cookbook: Recipes for Mastering Python 3","O'Reilly",new String[]{"Brian K. Jones","David Beazley"},null));
         bookRepo.saveAll(bookList);
         return bookList;
     }

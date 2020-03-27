@@ -1,7 +1,6 @@
-package com.communication.graphql;
+package com.communication.graphql.configuration;
 
-import com.communication.graphql.service.DataFetcher.BookDataFetcher;
-import com.communication.graphql.service.DataFetcher.AllBookdataFetcher;
+import com.communication.graphql.service.DataFetcher.*;
 import graphql.GraphQL;
 import graphql.schema.GraphQLSchema;
 import graphql.schema.idl.RuntimeWiring;
@@ -25,6 +24,15 @@ public class Configuration {
     @Autowired
     private AllBookdataFetcher bookDataFetchersAll;
 
+    @Autowired
+    private InsertBookDataFetcher insertBookDataFetcher;
+
+    @Autowired
+    private UpdateTitleDataFetcher updateTitleDataFetcher;
+
+    @Autowired
+    private DeleteBookDataFetcher deleteBookDataFetcher;
+
     @Value("classpath:books.graphql")
     private Resource resource;
 
@@ -43,7 +51,9 @@ public class Configuration {
     private RuntimeWiring buildRuntimeWiring() {
 
         return RuntimeWiring.newRuntimeWiring().type("Query",typeWiring ->
-                typeWiring.dataFetcher("allBooks", bookDataFetchersAll).dataFetcher("book", bookDataFetcher)).build();
+                typeWiring.dataFetcher("allBooks", bookDataFetchersAll).dataFetcher("book", bookDataFetcher))
+                .type("Mutation", mutation -> mutation.dataFetcher("updateTitle",updateTitleDataFetcher)
+                .dataFetcher("insertBook",insertBookDataFetcher)
+                .dataFetcher("deleteBook",deleteBookDataFetcher)).build();
     }
-
 }

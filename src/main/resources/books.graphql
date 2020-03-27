@@ -1,16 +1,31 @@
 type schema{
     query: Query
+    mutation: Mutation
 }
 
 type Query{
     allBooks: [Book]!
-    book(id: String): Book!
+    book(id: String!): Book!
+}
+
+type Mutation{
+    updateTitle(title: String!, isn: String!): Book!
+    insertBook(book: BookData!): Book!
+    deleteBook(isn: String!): Book!
 }
 
 type Book{
     isn: String!
     title: String!
-    publisher: String!
+    publisher: String
     authors: [String!]!
-    publishedDate: String!
+    publishedDate: String
+}
+
+input BookData{
+    isn: String!
+    title: String!
+    publisher: String
+    authors: [String!]!
+    publishedDate: String
 }
